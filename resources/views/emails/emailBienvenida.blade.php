@@ -11,6 +11,6 @@
     <p>{{$mensaje}}</p> <br>
     <p>valor de su pago : {{$pago}}</p>
     
-    <p>Tu camino al éxito a comenzado!!</p>
+    <p>Tu camino al éxito a comenzado!!</p> 
 </body>
 </html>

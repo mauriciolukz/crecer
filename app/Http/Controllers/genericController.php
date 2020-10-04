@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers;
 use App\pais;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-use App\bajas;
 use App\User;
+use App\bajas;
+use App\ciclo;
 use App\nodos;
 use App\matriz;
-use App\userMatriz;
-use App\ciclo;
 use App\estados;
-use App\municipios;
 use App\infoBancos;
-use App\beneficiarios;
+use App\municipios;
+use App\userMatriz;
 use App\Subscription;
+use App\beneficiarios;
 use App\PagosUsuarios;
+use Illuminate\Http\Request;
+use App\Mail\NotificaciónDeTarea;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\NotificaciónDeTarea;
-
-use Illuminate\Support\Facades\Log;
+use App\Mail\PreregistroCreandoCertezas;
 
 class genericController extends Controller
 {
@@ -795,6 +796,7 @@ $codigo= $codigo1.'-'.$codigo2.'-'.$codigo3;
         //$contenido= new Request;
         //$contenido['idUser']=$user->id;
         // app(\App\Http\Controllers\genericController::class)->insertaEnMatriz($contenido);
+        Mail::to($user->email)->send(new PreregistroCreandoCertezas ($user,$codigo,$request->email,$request->nombre));
  return redirect()->back()->with('status','Pre-Registro creado con exito.');
         }
 
@@ -804,7 +806,7 @@ $codigo= $codigo1.'-'.$codigo2.'-'.$codigo3;
 return redirect()->back()->with('error','Existe un usuario con este curp');
 }
     public function datos(Request $request)
-{
+{ 
     if(request()->ajax())
 {
 //$datos = User::where('codigo','=',$request->codigo)->first();
