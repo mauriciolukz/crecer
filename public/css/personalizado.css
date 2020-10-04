@@ -1,0 +1,58 @@
+.centrado
+{
+    text-align: center;
+}
+.justificado
+{
+    text-align: justify;
+}
+.alineadoderecha
+{
+	text-align: right;
+}
+.botonlanding
+{
+	color: #01BF86; 
+	font-weight: 500; 
+	font-size: 25px; 
+	background-color: Transparent; 
+	border: none;
+}
+.fuente36px
+{
+	font-size:36px;
+}
+.borderradius8px
+{
+	border-radius: 8px;
+}
+.fuenteper
+{
+	font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+}
+.colorbronce
+{
+	background: #cd7f32;
+}
+.colorplata
+{
+	background: #c0c0c0;
+}
+.colororo
+{
+	background: #daa520;
+}
+.colorplatino
+{
+	background: #7f7679;
+}
+.coloresmeralda
+{
+	background: #009975;
+}
+.colordiamante
+{
+	background: #007fff;
+}
