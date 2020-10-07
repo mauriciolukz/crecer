@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Bienvenid@ {{$user->nombre}} a Creando Certezas</h1>
-    <h2>Te recordamos que para completar tu registro es necesario realizar la aportación y la suscripción a nuestro sistema en lapso no mayor a 48 Hrs</h2>
+    <h2>Te recordamos que para completar tu registro es necesario realizar la aportación y la cuota mensual de activación a nuestro sistema en lapso no mayor a 48 Hrs</h2>
     <p>Tu email registrado: {{$user->email}}.</p>
     <p>Tu ID Generado: {{$user->codigo}}.</p>
     <p>Tu Contraseña Temporal: cambiame1234</p> <br>
