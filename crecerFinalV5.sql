@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 28-09-2020 a las 22:57:37
--- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.4.9
+-- Servidor: localhost:3306
+-- Tiempo de generación: 13-10-2020 a las 22:08:36
+-- Versión del servidor: 5.7.31-0ubuntu0.18.04.1
+-- Versión de PHP: 7.2.33-1+ubuntu18.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -18,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `crecerjuan`
+-- Base de datos: `dbcrecer`
 --
 
 -- --------------------------------------------------------
@@ -47,7 +46,7 @@ CREATE TABLE `beneficiarios` (
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `celular` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `parentesco` int(11) NOT NULL DEFAULT 1,
+  `parentesco` int(11) NOT NULL DEFAULT '1',
   `estatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -94,7 +93,7 @@ CREATE TABLE `ciclo` (
   `id` int(10) UNSIGNED NOT NULL,
   `idUser` int(11) NOT NULL,
   `tipo` int(11) NOT NULL,
-  `estatus` int(11) NOT NULL DEFAULT 0,
+  `estatus` int(11) NOT NULL DEFAULT '0',
   `idNodo` int(11) NOT NULL,
   `idMatriz` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -144,7 +143,7 @@ CREATE TABLE `estados` (
   `idPais` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `abrev` varchar(16) NOT NULL,
-  `activo` tinyint(1) NOT NULL DEFAULT 1
+  `activo` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Tabla de Estados de la República Mexicana';
 
 --
@@ -288,7 +287,7 @@ CREATE TABLE `municipios` (
   `idEstado` int(11) NOT NULL COMMENT 'Relación con estados',
   `clave` int(3) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `activo` tinyint(1) NOT NULL DEFAULT 1
+  `activo` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Tabla de Municipios de la Republica Mexicana';
 
 --
@@ -2801,7 +2800,7 @@ CREATE TABLE `nodos` (
   `idIzquierda` int(11) DEFAULT NULL,
   `idUser` int(11) NOT NULL,
   `idDerecha` int(11) DEFAULT NULL,
-  `idArriba` int(11) NOT NULL DEFAULT 0,
+  `idArriba` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2887,7 +2886,7 @@ INSERT INTO `pagos_usuarios` (`id`, `user_id`, `ciclo_id`, `matriz_id`, `comunid
 CREATE TABLE `pais` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `estatus` int(11) NOT NULL DEFAULT 1
+  `estatus` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -3011,7 +3010,7 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `estatus` tinyint(1) NOT NULL,
-  `sigueA` int(11) NOT NULL DEFAULT 0,
+  `sigueA` int(11) NOT NULL DEFAULT '0',
   `otraMatriz` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `codigo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -3021,14 +3020,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nombre`, `nickname`, `email`, `password`, `apellidoPaterno`, `apellidoMaterno`, `calle`, `numero`, `colonia`, `codigoPostal`, `idEstado`, `idMunicipio`, `telefono`, `rfc`, `curp`, `rol`, `padre`, `remember_token`, `created_at`, `updated_at`, `estatus`, `sigueA`, `otraMatriz`, `codigo`) VALUES
-(0, 'Master', 'Master', 'master@crecer.com', '$2y$10$Daw9S5IfcobOLmhgQdtERenZkl8s9cyVopIG73ijl47.9GPXlX0ki', '', '', 'NA', 'NA', 'NA', '000000', 19, 1, '1234567890', 'CURP123465HOM', 'CURP123456MANJS12', 1, 0, 'gG5JpSKpI6p9c46BSsno2lZSmNQ0tdxUFF3uYI9ZwRubYtyN9FoDxhtKQpqa', '2019-09-27 11:00:00', '2020-03-02 13:00:00', 1, 4, '11111', 'MMC-MMC-MM01'),
-(1, 'Rosa Cecilia', 'ROchoa', 'rosaochoa@crecer.com', '$2y$10$Daw9S5IfcobOLmhgQdtERenZkl8s9cyVopIG73ijl47.9GPXlX0ki', 'Ochoa', 'Castro', 'conocida', '25', 'conocida', '01478', 19, 966, '1234567890', 'qwerty123456', 'qwerty123456', 1, 0, '97SHe23I22GJAcUpJT2KCuDuX7N1wdDj0ubLrg6t9Ix2M24ySXAOmrDLeZrZ', '2020-03-19 07:29:40', '2020-04-23 07:35:47', 1, 0, NULL, 'ROC-MMC-ROC1'),
-(2, 'Raúl', 'RMendoza', 'raulmendoza@crecer.com', '$2y$10$Daw9S5IfcobOLmhgQdtERenZkl8s9cyVopIG73ijl47.9GPXlX0ki', 'Mendoza', 'Alvarado', 'conocida', '25', 'conocida', '01478', 19, 966, '1234567890', 'qwerty123456', 'qwerty123456', 1, 0, 'peBdfPFpaRRsaxGt91ztthYZYsHw3R74ChjYZtKe8KHNYvhh0N1xFckOpuvI', '2020-03-19 07:32:16', '2020-04-23 07:35:58', 1, 0, NULL, 'RMA-MMC-AR1M'),
-(3, 'Raúl', 'RBernal', 'raulbernal@crecer.com', '$2y$10$Daw9S5IfcobOLmhgQdtERenZkl8s9cyVopIG73ijl47.9GPXlX0ki', 'Bernal', 'Crispin', 'conocida', '25', 'conocida', '01478', 5, 37, '1234567890', 'qwerty123456', 'qwerty123456', 2, 1, 'jyZSWOJ9NLgTcJMoTW8ifGV6Yfse9qkxRATmf0uAbZVaO1lJ5KOCVf5rsv11', '2020-03-19 08:06:30', '2020-04-23 07:36:10', 1, 0, NULL, 'RBC-ROC-B1CR'),
-(4, 'Rodolfo', 'RCamacho', 'rodolfocamacho@crecer.com', '$2y$10$Daw9S5IfcobOLmhgQdtERenZkl8s9cyVopIG73ijl47.9GPXlX0ki', 'Camacho', 'Aguero', 'conocida', '123', 'conocida', '12345', 19, 966, '1234567890', 'qwerty123456', 'qwerty123456', 2, 1, 'gaxpKWyy3O6mPV5tQlCKGNHKjmMT7X3LnUdEI4MgPjb8uCdBdF58TYnHnelo', '2020-03-19 09:35:54', '2020-05-08 20:29:26', 1, 0, NULL, 'RCA-ROC-CA2R'),
-(5, 'Yazmin', 'YRodriguez', 'yazminrodriguez@crecer.com', '$2y$10$Daw9S5IfcobOLmhgQdtERenZkl8s9cyVopIG73ijl47.9GPXlX0ki', 'Rodriguez', 'Martínez', 'conocida', '25', 'conocida', '01478', 19, 966, '1234567890', 'qwerty123456', 'qwerty123456', 2, 2, NULL, '2020-03-19 09:29:46', '2020-04-23 07:36:56', 1, 0, NULL, 'YRM-RMA-RM1Y'),
-(6, 'Roberto', 'RUgalde', 'robertougalde@crecer.com', '$2y$10$Daw9S5IfcobOLmhgQdtERenZkl8s9cyVopIG73ijl47.9GPXlX0ki', 'Ugalde', 'Chairez', 'conocida', '123', 'conocida', '01234', 19, 966, '1234567890', 'qwerty123456', 'qwerty123456', 2, 2, NULL, '2020-03-19 09:33:23', '2020-04-23 07:37:08', 1, 0, NULL, 'RUC-RMA-UC2R'),
-(7, 'Rafael', 'RRamirez', 'rafael@crecer.com', '$2y$10$Daw9S5IfcobOLmhgQdtERenZkl8s9cyVopIG73ijl47.9GPXlX0ki', 'Ramirez', 'Mercado', 'test', '25', 'test', '56287', 1, 3, '0154789632', 'qwerty123456', 'qwerty123456789qwer', 2, 3, NULL, '2020-04-25 03:33:04', '2020-04-25 03:33:04', 1, 0, NULL, 'RRM-RBC-MR2R');
+(0, 'Master', 'Master', 'creandocertezas@gmail.com', '$2y$10$Daw9S5IfcobOLmhgQdtERenZkl8s9cyVopIG73ijl47.9GPXlX0ki', '', '', 'NA', 'NA', 'NA', '000000', 19, 1, '1234567890', 'CURP123465HOM', 'CURP123456MANJS12', 1, 0, 'gG5JpSKpI6p9c46BSsno2lZSmNQ0tdxUFF3uYI9ZwRubYtyN9FoDxhtKQpqa', '2019-09-27 11:00:00', '2020-03-02 13:00:00', 1, 4, '11111', 'MMC-MMC-MM01'),
+(1, 'Rosa Cecilia', 'ROchoa', 'cecy8acastro@gmail.com', '$2y$10$Daw9S5IfcobOLmhgQdtERenZkl8s9cyVopIG73ijl47.9GPXlX0ki', 'Ochoa', 'Castro', 'conocida', '25', 'conocida', '01478', 19, 966, '1234567890', 'qwerty123456', 'qwerty123456', 1, 0, '97SHe23I22GJAcUpJT2KCuDuX7N1wdDj0ubLrg6t9Ix2M24ySXAOmrDLeZrZ', '2020-03-19 07:29:40', '2020-04-23 07:35:47', 1, 0, NULL, 'ROC-MMC-ROC1'),
+(2, 'Raúl', 'RMendoza', 'raulm161264@gmail.com', '$2y$10$Daw9S5IfcobOLmhgQdtERenZkl8s9cyVopIG73ijl47.9GPXlX0ki', 'Mendoza', 'Alvarado', 'conocida', '25', 'conocida', '01478', 19, 966, '1234567890', 'qwerty123456', 'qwerty123456', 1, 0, 'peBdfPFpaRRsaxGt91ztthYZYsHw3R74ChjYZtKe8KHNYvhh0N1xFckOpuvI', '2020-03-19 07:32:16', '2020-04-23 07:35:58', 1, 0, NULL, 'RMA-MMC-AR1M'),
+(3, 'Raúl', 'RBernal', 'bernalr340@gmail.com', '$2y$10$Daw9S5IfcobOLmhgQdtERenZkl8s9cyVopIG73ijl47.9GPXlX0ki', 'Bernal', 'Crispin', 'conocida', '25', 'conocida', '01478', 5, 37, '1234567890', 'qwerty123456', 'qwerty123456', 2, 1, 'qAG2MDwKlBYCquZwiheiLiQ6L0OHg3ndgEoiTil8bOHCqCV5v25Q94vVs3Lo', '2020-03-19 08:06:30', '2020-04-23 07:36:10', 1, 0, NULL, 'RBC-ROC-B1CR'),
+(4, 'Rodolfo', 'RCamacho', 'rodoca6310@hotmail.com', '$2y$10$Daw9S5IfcobOLmhgQdtERenZkl8s9cyVopIG73ijl47.9GPXlX0ki', 'Camacho', 'Aguero', 'conocida', '123', 'conocida', '12345', 19, 966, '1234567890', 'qwerty123456', 'qwerty123456', 2, 1, 'gaxpKWyy3O6mPV5tQlCKGNHKjmMT7X3LnUdEI4MgPjb8uCdBdF58TYnHnelo', '2020-03-19 09:35:54', '2020-05-08 20:29:26', 1, 0, NULL, 'RCA-ROC-CA2R'),
+(5, 'Yazmin', 'YRodriguez', 'yasrdm@gmail.com', '$2y$10$Daw9S5IfcobOLmhgQdtERenZkl8s9cyVopIG73ijl47.9GPXlX0ki', 'Rodriguez', 'Martínez', 'conocida', '25', 'conocida', '01478', 19, 966, '1234567890', 'qwerty123456', 'qwerty123456', 2, 2, NULL, '2020-03-19 09:29:46', '2020-04-23 07:36:56', 1, 0, NULL, 'YRM-RMA-RM1Y'),
+(6, 'Roberto', 'RUgalde', 'roberugalde9@gmail.com', '$2y$10$Daw9S5IfcobOLmhgQdtERenZkl8s9cyVopIG73ijl47.9GPXlX0ki', 'Ugalde', 'Chairez', 'conocida', '123', 'conocida', '01234', 19, 966, '1234567890', 'qwerty123456', 'qwerty123456', 2, 2, NULL, '2020-03-19 09:33:23', '2020-04-23 07:37:08', 1, 0, NULL, 'RUC-RMA-UC2R'),
+(7, 'Rafael', 'RRamirez', 'divveetorreon@gmail.com', '$2y$10$Daw9S5IfcobOLmhgQdtERenZkl8s9cyVopIG73ijl47.9GPXlX0ki', 'Ramirez', 'Mercado', 'test', '25', 'test', '56287', 1, 3, '0154789632', 'qwerty123456', 'qwerty123456789qwer', 2, 3, NULL, '2020-04-25 03:33:04', '2020-04-25 03:33:04', 1, 0, NULL, 'RRM-RBC-MR2R');
 
 --
 -- Índices para tablas volcadas
@@ -3153,104 +3152,86 @@ ALTER TABLE `users`
 --
 ALTER TABLE `bajas`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `beneficiarios`
 --
 ALTER TABLE `beneficiarios`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
 --
 -- AUTO_INCREMENT de la tabla `catalogopagos`
 --
 ALTER TABLE `catalogopagos`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `ciclo`
 --
 ALTER TABLE `ciclo`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
 --
 -- AUTO_INCREMENT de la tabla `estados`
 --
 ALTER TABLE `estados`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
 --
 -- AUTO_INCREMENT de la tabla `infbancos`
 --
 ALTER TABLE `infbancos`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
 --
 -- AUTO_INCREMENT de la tabla `matriz`
 --
 ALTER TABLE `matriz`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
 --
 -- AUTO_INCREMENT de la tabla `municipios`
 --
 ALTER TABLE `municipios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2493;
-
 --
 -- AUTO_INCREMENT de la tabla `nodos`
 --
 ALTER TABLE `nodos`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-
 --
 -- AUTO_INCREMENT de la tabla `pagoscrecer`
 --
 ALTER TABLE `pagoscrecer`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `pagos_usuarios`
 --
 ALTER TABLE `pagos_usuarios`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT de la tabla `pais`
 --
 ALTER TABLE `pais`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT de la tabla `saldos`
 --
 ALTER TABLE `saldos`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `subscriptions`
 --
 ALTER TABLE `subscriptions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT de la tabla `usermatriz`
 --
 ALTER TABLE `usermatriz`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
-
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
