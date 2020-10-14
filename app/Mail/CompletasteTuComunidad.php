@@ -10,15 +10,22 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class CompletasteTuComunidad extends Mailable
 {
     use Queueable, SerializesModels;
+    protected $titulo;
+    protected $mensaje;
+    protected $pago;
+    protected $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct( $titulo, $mensaje, $pago, $user )
     {
-        //aqui poner las variables del email
+        $this->titulo = $titulo;
+        $this->mensaje = $mensaje;
+        $this->pago = $pago;
+        $this->user = $user;
     }
 
     /**
@@ -28,6 +35,11 @@ class CompletasteTuComunidad extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.emailcompletacomunidad');
+        return $this->view( 'emails.emailcompletacomunidad' )->with([
+            'titulo'  =>  $this->titulo,
+            'mensaje'  =>  $this->mensaje,
+            'pago'  =>  $this->pago,
+            'user'  =>  $this->user
+        ]);
     }
 }

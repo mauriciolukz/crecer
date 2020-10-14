@@ -6,11 +6,11 @@
     <title>Completaste Tu Comunidad</title>
 </head>
 <body>
-    <h1>Felicidades {{$user->nombre}} haz completado tu comunidad </h1>
+    <h1>Felicidades {{ $user->nombre }} haz completado tu comunidad </h1>
     <h2>Tu esfuerzo ha tenido grandes éxitos</h2>
-    <p>Comunidad lograda: .</p>
-    <p>Llenaste el Ciclo: .</p>
-    <p>Ahora puedes cobrar: </p> <br>
+    <p>Comunidad lograda: {{ $titulo }}.</p>
+    <p>Llenaste el Ciclo: {{ $mensaje }}.</p>
+    <p>Ahora puedes cobrar: {{ $pago }}</p> <br>
     <p>Recuerda que puedes vel el desglose en tu Backoffice</p><br>
 
     <h3>Continúa esforzándorte para seguir obteniendo los beneficios de pertenecer a Creando Certezas</h3> 
