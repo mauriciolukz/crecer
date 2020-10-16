@@ -578,12 +578,18 @@ class genericController extends Controller
      */
      public function traeArbol($usuario, $idMatriz) 
     {   
+        $resultCiclo = "";
         $ciclo = ciclo::where('idUser', '=', $usuario->id)
                       ->where('idMatriz', '=', $idMatriz)
                       ->where('estatus', '=', 0)->first();
 
-        $nodo = nodos::where('id', '=', $ciclo->idNodo)->first();
-        return $this->llenaArbol($nodo);
+        if( !empty( $ciclo ) ){
+
+            $nodo = nodos::where('id', '=', $ciclo->idNodo)->first();
+            $resultCiclo = $this->llenaArbol($nodo);
+        }        
+
+        return $resultCiclo;
     }
     /* Función traeArbolCiclo: trae el arbol del ciclo que selecciono el usuario
      */
