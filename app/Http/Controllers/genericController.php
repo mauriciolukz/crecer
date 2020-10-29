@@ -187,7 +187,21 @@ class genericController extends Controller
                 ]);
         if($userCicla->id == 0){
             if($idMatriz == 1){
-                $cicloPadre=ciclo::where('idUser','=',$userCicla->sigueA)
+                // Mauricio Cicla
+                //Cicla para colocarse primero debajo de la persona que ocupa la posición 3 
+                
+                // Averiguamos ciclo actual cerrado del usuario para saber el nodo
+                $cicloActual=ciclo::where([['idUser','=',$userCicla->id],['estatus','=',1]])->orderBy('updated_at', 'DESC')->first();
+                // Buscamos primer nivel
+                $nivelUno=nodos::where('id','=',$cicloActual->idNodo)->first();
+                // Buscar el id del nodo segundo nivel
+                $refNivelDos=nodos::where('id','=',$nivelUno->idIzquierda)->first();
+                // Nivel donde se colocara el siguiente MASTER ES DIFERENTE A UN USUARIO NORMAL
+                $nivelDos=nodos::where('id','=',$refNivelDos->idIzquierda)->first();
+
+                $cicloPadre=ciclo::where('idUser','=',$nivelDos->idUser)
+                
+                // $cicloPadre=ciclo::where('idUser','=',$userCicla->sigueA)
                             ->where('idMatriz','=',$idMatriz)
                             ->where('estatus','=',0)->first();
                 $lleno=$this->inserta($cicloPadre->idNodo,$nodo);
